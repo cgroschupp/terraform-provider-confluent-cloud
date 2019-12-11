@@ -33,7 +33,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: bin/linux-amd64/terraform-provider-confluentcloud
+          files: bin/terraform-provider-confluentcloud-v*
           draft: false
           prerelease: true
         env:
