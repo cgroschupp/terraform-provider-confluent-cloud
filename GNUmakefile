@@ -45,3 +45,7 @@ test:
 .PHONY: testacc
 testacc:
 	TF_LOG=debug TF_ACC=1 $(GOCMD) test $(TEST) -v $(TESTARGS) -timeout 120m
+
+.PHONY: gox
+gox:
+	GO111MODULE=off go get -u github.com/mitchellh/gox
