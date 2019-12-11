@@ -1,15 +1,20 @@
 TEST?=./...
+
+# Go variables
+GOCMD       := GO111MODULE=on go
 GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
 
-default: build
+.PHONY: all
+all: test build
 
+.PHONY: build
 build:
-	go install
+	$(GOCMD) install
 
+.PHONY: test
 test:
-	go test ./...
+	$(GOCMD) test ./...
 
+.PHONY: testacc
 testacc:
-	TF_LOG=debug TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
-
-.PHONY: build test testacc
+	TF_LOG=debug TF_ACC=1 $(GOCMD) test $(TEST) -v $(TESTARGS) -timeout 120m
